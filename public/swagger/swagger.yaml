@@ -1,0 +1,84 @@
+swagger: '2.0'
+info:
+  description: Earning App's API Swagger OAS2 Documentation
+  version: 1.0.0
+  title: Earning API
+basePath: /api/
+
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary:
+      description: 'Register APIs'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Bad request
+      parameters:
+        - in: body
+          name: login
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary:
+      description: 'Login APIs | all request should be => Bearer THE_TOKEN'
+      operationId: categoryx
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Bad request
+      parameters:
+        - in: body
+          name: register
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+  /payment_methods:
+    get:
+      tags:
+        - Payment Method
+      security:
+        - APIKeyHeader: []
+      summary:
+      description: 'Payment Methods API'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Bad request
+
+securityDefinitions:
+  APIKeyHeader:
+    type: apiKey
+    name: Authorization
+    in: header
