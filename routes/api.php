@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 // PUBLIC ROUTES
 
-Route::post('auth/register', [\App\Http\Controllers\AuthController::class, 'register']);
-Route::post('auth/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('auth/register', [AuthController::class, 'register']);
+Route::post('auth/login', [AuthController::class, 'login']);
 
 
 // AUTH ROUTES
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('user', [\App\Http\Controllers\AuthController::class, 'user']);
-    Route::get('payment_methods', function(){
-        return ['x'];
-    });
+    Route::get('user', [AuthController::class, 'user']);
+    Route::get('payment_methods', [PaymentController::class, 'methods']);
+    Route::post('payment_method/create', [PaymentController::class, 'createMethod']);
  });

@@ -15,6 +15,9 @@ class CreatePaymentmethodsTable extends Migration
     {
         Schema::create('paymentmethods', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('minimum_amount');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }
